@@ -1,7 +1,7 @@
 class Restaurant < ApplicationRecord
-  has_many :reviews
-  validates_presence_of :name, on: :create, message: "can't be blank"
-  validates_presence_of :address, on: :create, message: "can't be blank"
-  validates_presence_of :category, on: :create, message: "can't be blank"
-  validates :rating, :inclusion => { :in => 0..5 }
+  has_many :reviews, :dependent => :destroy
+  validates :name, presence: true, nul: false
+  validates :address, presence: true  
+  validates :category, presence: true, uniqueness: { case_sensitive: false }, :inclusion => { :in => %w[chinese italian japanese french belgian] }
+  validates :phone_number, presence: true
 end
