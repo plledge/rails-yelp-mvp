@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+Restaurant.destroy_all
 puts "Adding fake restaurants"
 30.times do |i|
 
-  Restaurant.create(
+  Restaurant.create!(
     name: Faker::Restaurant.name,
     address: Faker::Address.street_address,
     phone_number: Faker::PhoneNumber.phone_number,
@@ -18,3 +18,5 @@ puts "Adding fake restaurants"
   )
   puts "Restaurant #{i + 1} created"
 end
+
+puts " #{Restaurant.count} restaurants "

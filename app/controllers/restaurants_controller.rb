@@ -10,6 +10,21 @@ class RestaurantsController < ApplicationController
     # check set_restaurant method
   end
 
+  def new
+    @restaurant = Restaurant.new
+  end
+
+  def create
+    @restaurant = Restaurant.new(restaurant_params)
+
+    if @restaurant.save
+      redirect_to @restaurant, notice: 'Restaurant added!'
+    else
+      render :new
+    end
+  end
+
+
   private
 
   def set_restaurant
@@ -17,9 +32,9 @@ class RestaurantsController < ApplicationController
   end
 
   def restaurant_params
-    # pegue a hash restaurant dentro de params e só permita os campos
-    # name, address e rating (qualquer outro não passará)
-    params.require(:restaurant).permit(:name, :address, :phone_number)
+    # pegue a hash restaurant dentro de params e só permita os campos abaixo
+    # (qualquer outro não passará)
+    params.require(:restaurant).permit(:name, :address, :phone_number, :category)
   end
 
 end

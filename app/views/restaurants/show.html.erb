@@ -1,0 +1,27 @@
+<h1><%= @restaurant.name %></h1>
+
+<p>Localizado em: <%= @restaurant.address %></p>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Review</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  <% @restaurant.reviews.each do |review| %>
+    <tr>
+    <td> <%= review.content %></td>
+    <td> <%= review.rating %></td>
+    </tr>
+  <% end %>
+  </tbody>
+
+</ul>
+</table>
+
+<%= link_to 'Add Review', new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+<%= link_to 'Back', restaurants_path, class: "btn btn-primary" %>
